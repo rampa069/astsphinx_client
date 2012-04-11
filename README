@@ -1,0 +1,49 @@
+Asterisk - Sphinx Intergration 
+(c) 2009, Christopher Jansen scribblej@scribblej.com
+(c) 2012, Ramon Martinez <rampa@encomix.org>
+
+
+== Asterisk - Sphinx Intergration CLIENT side ==
+
+The full Sphinx and Asterisk integration consists of a server peice, which is this
+software.  Also required is the patch to Asterisk to provide the Generic Speech API
+with the "Sphinx" engine plugin.
+
+
+==INSTALL==
+
+make && make install && make samples
+
+
+
+The latest versions of the original  software should be available at:
+
+http://scribblej.com/
+
+
+The latest version of my version (jsgf grammars) is available at:
+
+https://github.com/rampa069/astsphinx_server (server side)
+                      
+                        and
+
+https://github.com/rampa069/astsphinx_client (client side)
+
+
+## USE ##
+
+ example of dialplan usage:
+
+exten => _3000,1,Answer()
+exten => _3000,n,SpeechCreate(Sphinx-Es)
+exten => _3000,n,PicoTTS(Bienvenido a la prueba de integración de gramáticas.,,es-ES)
+exten => _3000,n,SpeechActivateGrammar(digits-es-4)
+exten => _3000,n,PicoTTS("Diga dígitos de 0 a 9.",any,es-ES)
+exten => _3000,n,SpeechStart()
+exten => _3000,n,SpeechBackground(beep,10)
+exten => _3000,n,SpeechDeactivateGrammar(digits-es-4)
+exten => _3000,n,Log(NOTICE,${SPEECH_TEXT(0)})
+exten => _3000,n,Noop(${SPEECH(results)})
+exten => _3000,n,Noop(${SPEECH_GRAMMAR(0)})
+exten => _3000,n,PicoTTS(Has dicho: ${SPEECH_TEXT(0)}.,any,es-ES)
+exten => _3000,n,Goto(5)
