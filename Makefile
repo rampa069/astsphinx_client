@@ -11,8 +11,8 @@ CC=gcc
 OPTIMIZE=-O2
 DEBUG=-g
 
-LIBS+=-lm -lespeak -lsndfile -lresample -L/opt/swift/lib -lswift  -lceplang_es -lceplex_es
-CFLAGS+= -fPIC -Wall -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -D_REENTRANT  -D_GNU_SOURCE  -I/opt/swift/include
+LIBS+=-lm 
+CFLAGS+= -fPIC -D_REENTRANT  -D_GNU_SOURCE
 
 all: _all
 	@echo " +-------- app_espeak Build Complete --------+"  
