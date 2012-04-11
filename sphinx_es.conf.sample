@@ -1,0 +1,11 @@
+[general]
+;ip and port of server
+serverip=127.0.0.1
+serverport=10069
+;silence detection is performed by Asterisk DSP, how long to wait before we consider speech finished.
+silencetime=500
+;noiseframes; only here for troublehooting, leave set to 0
+noiseframes=0
+;threshold defines how 'quiet' silence is, try raising to higher numbers if speech is detected too early
+silencethreshold=800
+
